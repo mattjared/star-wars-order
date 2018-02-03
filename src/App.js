@@ -4,30 +4,45 @@ import data from './data.js';
 import List from './List'
 
 class App extends Component {
-  state = {
-    test: "hey hey hey",
-    showMovies: true,
-    showBooks: false
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: false,
+      content: ['book', 'movie', 'game', 'show'],
+    };
   }
+  toggleBooks = () => {
+    if (this.state.content.includes('book')) {
+      this.setState({ 
+        content: this.state.content.filter(item => item !== 'book') 
+      });
+    } else {
+      this.setState({
+        content: this.state.content.concat('book'),
+      })
+    }
+  }
+
   render() {    
     return (
       <div className="App">
         <div>
           <form>
-            <input type="checkbox" />
+            <input type="checkbox" onChange={this.toggleBooks} />
             <label>Show Books</label>            
           </form>
         </div>
-        <List name={this.state.test} />
         {data.map((d, i) => {
           return (
-            <div className="push" key={i}>
-              <li>{d.name}</li>
-              <li>{d.bio}</li>
-              <li>{d.date}</li>
-              <li>{d.standard_year}</li>
-              <li>{d.type}</li>
-            </div>
+            <List 
+              key={i}
+              name={d.name} 
+              bio={d.bio} 
+              date={d.date} 
+              standard_year={d.standard_year}
+              type={d.type}
+              content={this.state.content}
+            />
           )
         })}
       </div>

@@ -26,6 +26,13 @@ const data = [
 		"date": "2014",
 		"standard_year": "3 BBY",
 		"type": "book",
+	},
+	{
+		"name": "Poe and BB8",
+		"bio": "Comic about poe and bb8",
+		"date": "2017",
+		"standard_year": "2 BBY",
+		"type": "comic",
 	}
 ];
 
