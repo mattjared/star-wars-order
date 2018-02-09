@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
 import './App.css';
-import data from './data.js';
-import List from './List'
+import {data, content} from './data.js';
+import Card from './Card'
+import Form from './Form'
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: false,
-      content: ['book', 'movie', 'game', 'show'],
+      content: ['movie'],
     };
   }
-  toggleBooks = () => {
-    if (this.state.content.includes('book')) {
+  toggleContent = (e) => {
+    if (this.state.content.includes(e)) {
       this.setState({ 
-        content: this.state.content.filter(item => item !== 'book') 
+        content: this.state.content.filter(item => item !== e) 
       });
     } else {
       this.setState({
-        content: this.state.content.concat('book'),
+        content: this.state.content.concat(e),
       })
     }
   }
@@ -26,15 +26,17 @@ class App extends Component {
   render() {    
     return (
       <div className="App">
-        <div>
-          <form>
-            <input type="checkbox" onChange={this.toggleBooks} />
-            <label>Show Books</label>            
-          </form>
-        </div>
+        {content.map((c, i) => {
+          return (
+            <Form 
+              onClick={this.toggleContent} 
+              contentType={c.type}
+            />
+          )
+        })}
         {data.map((d, i) => {
           return (
-            <List 
+            <Card 
               key={i}
               name={d.name} 
               bio={d.bio} 
