@@ -7,6 +7,7 @@ import Form from './Form'
 class App extends Component {
   constructor(props) {
     super(props);
+    this.toggleContent = this.toggleContent.bind(this);
     this.state = {
       content: ['movie'],
     };
@@ -14,7 +15,7 @@ class App extends Component {
   toggleContent = (e) => {
     if (this.state.content.includes(e)) {
       this.setState({ 
-        content: this.state.content.filter(item => item !== e) 
+        content: this.state.content.filter(item => item !== e),
       });
     } else {
       this.setState({
@@ -28,10 +29,7 @@ class App extends Component {
       <div className="App">
         {content.map((c, i) => {
           return (
-            <Form 
-              onClick={this.toggleContent} 
-              contentType={c.type}
-            />
+            <Form onToggle={this.toggleContent} contentType={c} key={i} />
           )
         })}
         {data.map((d, i) => {

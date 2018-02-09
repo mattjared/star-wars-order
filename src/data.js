@@ -86,20 +86,4 @@ export const data = [
 
 ];
 
-export const content = [
-	{
-		"type": "book",
-	},
-	{
-		"type": "movie",
-	},
-	{
-		"type": "show",
-	},
-	{
-		"type": "comic",
-	},
-	{
-		"type": "game",
-	}
-]
+export const content = [ "book", "movie", "show", "comic", "game"]
