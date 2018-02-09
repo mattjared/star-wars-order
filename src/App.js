@@ -23,6 +23,11 @@ class App extends Component {
       })
     }
   }
+  checkChecked = () => {
+    if (this.state.content === content) {
+
+    }
+  }
 
   render() {    
     return (
