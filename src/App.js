@@ -34,7 +34,12 @@ class App extends Component {
       <div className="App">
         {content.map((c, i) => {
           return (
-            <Form onToggle={this.toggleContent} contentType={c} key={i} />
+            <Form 
+              onToggle={this.toggleContent} 
+              contentType={c} 
+              key={i} 
+              contentShown={this.state.content}
+            />
           )
         })}
         {data.map((d, i) => {

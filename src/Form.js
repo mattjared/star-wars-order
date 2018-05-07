@@ -5,12 +5,13 @@ class Form extends Component {
 	handleToggle = () => {
 		this.props.onToggle(this.props.contentType)
 	}
+	
 	render() {
-		console.log(this.props.checkedLogic)
+		const isChecked = this.props.contentShown.includes(this.props.contentType)
 		return (
 			<div>
 				<form>
-					<input type="checkbox" onChange={this.handleToggle} />
+					<input type="checkbox" onChange={this.handleToggle} checked={isChecked}/>
 					<label>see { this.props.contentType }s</label>
 				</form>
 			</div>
