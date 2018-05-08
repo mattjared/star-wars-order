@@ -21,6 +21,13 @@ export const data = [
 		"type": "movie",
 	},
 	{
+		"name": "Solo: A Star Wars Story",
+		"bio": "I've got a great feeling about this",
+		"date": "2018",
+		"standard_year": "9 BBY",
+		"type": "movie",
+	},
+	{
 		"name": "Rogue One",
 		"bio": "The captain told me I had to.",
 		"date": "2016",
