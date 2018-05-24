@@ -3,13 +3,17 @@ import './App.css';
 import {data, content} from './data.js';
 import Card from './Card'
 import Form from './Form'
+import DateForm from './DateForm'
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.toggleContent = this.toggleContent.bind(this);
+    this.toggleYearType = this.toggleYearType.bind(this);
     this.state = {
       content: ['movie'],
+      yearType: true,
+      data: data,
     };
   }
   toggleContent = (e) => {
@@ -23,12 +27,21 @@ class App extends Component {
       })
     }
   }
-  checkChecked = () => {
-    if (this.state.content === content) {
-
-    }
+  toggleYearType = (e) => {
+    this.setState({
+        yearType: !this.state.yearType,
+    });
+    this.toggleYearData();
   }
-
+  toggleYearData = () => {
+    const sorter = this.state.yearType ? 'raw_standard_year' : 'date';
+    this.state.data.sort((dataObj1, dataObj2) => {
+      return dataObj1[sorter] - dataObj2[sorter]
+    })
+  }
+  componentDidMount() {
+    this.toggleYearData();
+  }
   render() {    
     return (
       <div className="App">
@@ -42,7 +55,10 @@ class App extends Component {
             />
           )
         })}
-        {data.map((d, i) => {
+        <DateForm 
+          onToggle={this.toggleYearType}
+        />
+        {this.state.data.map((d, i) => {
           return (
             <Card 
               key={i}

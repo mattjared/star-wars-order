@@ -4,6 +4,7 @@ export const data = [
 		"bio": "I happen to have a chance cube right here",
 		"date": "1999",
 		"standard_year": "32 BBY",
+		"raw_standard_year": "-32",
 		"type": "movie",
 	},  
   	{
@@ -11,6 +12,7 @@ export const data = [
 		"bio": "I hate sand",
 		"date": "2002",
 		"standard_year": "22 BBY",
+		"raw_standard_year": "-22",
 		"type": "movie",
 	},
 	{
@@ -18,6 +20,7 @@ export const data = [
 		"bio": "I have the high ground",
 		"date": "2005",
 		"standard_year": "19 BBY",
+		"raw_standard_year": "-19",
 		"type": "movie",
 	},
 	{
@@ -25,6 +28,7 @@ export const data = [
 		"bio": "I've got a great feeling about this",
 		"date": "2018",
 		"standard_year": "9 BBY",
+		"raw_standard_year": "-9",
 		"type": "movie",
 	},
 	{
@@ -32,6 +36,7 @@ export const data = [
 		"bio": "The captain told me I had to.",
 		"date": "2016",
 		"standard_year": "1 BBY",
+		"raw_standard_year": "-1",
 		"type": "movie",
 	},
 	{
@@ -39,6 +44,7 @@ export const data = [
 		"bio": "That's no moon",
 		"date": "1977",
 		"standard_year": "0 BBY",
+		"raw_standard_year": "0",
 		"type": "movie",
 	},
 	{
@@ -46,6 +52,7 @@ export const data = [
 		"bio": "I know",
 		"date": "1980",
 		"standard_year": "3 ABY",
+		"raw_standard_year": "3",
 		"type": "movie",
 	},
 	{
@@ -53,6 +60,7 @@ export const data = [
 		"bio": "I am a Jedi, like my father before me",
 		"date": "1983",
 		"standard_year": "4 ABY",
+		"raw_standard_year": "4",
 		"type": "movie",
 	},
 	{
@@ -60,6 +68,7 @@ export const data = [
 		"bio": "TALAMAPARKWA",
 		"date": "2015",
 		"standard_year": "33 ABY",
+		"raw_standard_year": "33",
 		"type": "movie",
 	},
 	{
@@ -67,6 +76,7 @@ export const data = [
 		"bio": "Crystal Critters",
 		"date": "2017",
 		"standard_year": "34 ABY",
+		"raw_standard_year": "34",
 		"type": "movie",
 	},
 	{
@@ -74,6 +84,7 @@ export const data = [
 		"bio": "Grand Moff Tarkin",
 		"date": "2014",
 		"standard_year": "3 BBY",
+		"raw_standard_year": "-3",
 		"type": "book",
 	},
 	{
@@ -81,6 +92,7 @@ export const data = [
 		"bio": "Comic about poe and bb8",
 		"date": "2017",
 		"standard_year": "2 BBY",
+		"raw_standard_year": "-2",
 		"type": "comic",
 	},
 	{
@@ -88,9 +100,9 @@ export const data = [
 		"bio": "The One With Ahsoka",
 		"date": "2015",
 		"standard_year": "2 BBY",
+		"raw_standard_year": "-2",
 		"type": "show",
 	}
-
 ];
 
 export const content = [ "book", "movie", "show", "comic", "game"]
