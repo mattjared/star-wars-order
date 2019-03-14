@@ -8,10 +8,13 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.toggleContent = this.toggleContent.bind(this);
+    this.toggleYearType = this.toggleYearType.bind(this);
     this.state = {
       content: ['movie'],
       release_order: false,
       activeCard: '',
+      yearType: true,
+      data: data,
     };
   }
   toggleContent = (e) => {
@@ -24,6 +27,21 @@ class App extends Component {
         content: this.state.content.concat(e),
       })
     }
+  }
+  toggleYearType = (e) => {
+    this.setState({
+        yearType: !this.state.yearType,
+    });
+    this.toggleYearData();
+  }
+  toggleYearData = () => {
+    const sorter = this.state.yearType ? 'raw_standard_year' : 'date';
+    this.state.data.sort((dataObj1, dataObj2) => {
+      return dataObj1[sorter] - dataObj2[sorter]
+    })
+  }
+  componentDidMount() {
+    this.toggleYearData();
   }
   render() {    
     const rawData = data;
