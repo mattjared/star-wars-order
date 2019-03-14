@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import './App.css';
 import {data, content} from './data.js';
 import Card from './Card'
 import Form from './Form'
+import { sortBy } from 'underscore';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.toggleContent = this.toggleContent.bind(this);
-    this.expandCard = this.expandCard.bind(this);
     this.state = {
       content: ['movie'],
       release_order: false,
@@ -26,34 +25,25 @@ class App extends Component {
       })
     }
   }
-  toggleOrder = () => {
-    if (this.state.release_order !== true) {
-      for (let i = 0; i < data.length; i++) {
-          
-      }
-    }
-  }
-  expandCard = (e) => {
-    this.setState({
-      activeCard: e,
-    })
-  }
   render() {    
+    const rawData = data;
+    const sortedData = sortBy(rawData, 'date');
+    console.log(rawData, sortedData);
     return (
       <div className="App">
-        <div className="form-wrap">
-          {content.map((c, i) => {
-            return (
-              <Form 
-                onToggle={this.toggleContent} 
-                contentType={c} 
-                key={i} 
-                contentShown={this.state.content}
-              />
-            )
-          })}
-        </div>
-        <div className="card-wrap">
+          <div className="form-wrap">
+            {content.map((c, i) => {
+              return (
+                <Form 
+                  onToggle={this.toggleContent} 
+                  contentType={c} 
+                  key={i} 
+                  contentShown={this.state.content}
+                />
+              )
+            })}
+          </div>
+          <div className="card-wrap">
           {data.map((d, i) => {
             return (
               <Card 
