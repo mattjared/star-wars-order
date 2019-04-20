@@ -8,12 +8,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.toggleContent = this.toggleContent.bind(this);
-    this.toggleYearType = this.toggleYearType.bind(this);
+    this.toggleOrder = this.toggleOrder.bind(this);
     this.state = {
       content: ['movie'],
-      release_order: false,
-      activeCard: '',
-      yearType: true,
+      orderByRelease: true,
       data: data,
     };
   }
@@ -28,25 +26,24 @@ class App extends Component {
       })
     }
   }
-  toggleYearType = (e) => {
+  toggleOrder = (e) => {
     this.setState({
-        yearType: !this.state.yearType,
+      yearType: !this.state.yearType,
     });
-    this.toggleYearData();
-  }
-  toggleYearData = () => {
-    const sorter = this.state.yearType ? 'raw_standard_year' : 'date';
-    this.state.data.sort((dataObj1, dataObj2) => {
-      return dataObj1[sorter] - dataObj2[sorter]
-    })
   }
   componentDidMount() {
-    this.toggleYearData();
+    // this.toggleYearData();
   }
   render() {    
-    const rawData = data;
-    const sortedData = sortBy(rawData, 'date');
-    console.log(rawData, sortedData);
+    const rawData = this.state.data;
+    let orderType;
+    if (this.state.orderByRelease) {
+      const sortedData = sortBy(rawData, 'date');
+      orderType = "Order By Release Date"
+    } else {
+      const sortedData = sortBy(rawData, 'date');
+      orderType = "Order By Star Wars Time"
+    }
     return (
       <div className="App">
           <div className="form-wrap">
@@ -60,6 +57,7 @@ class App extends Component {
                 />
               )
             })}
+            <button onClick={this.toggleOrder}>{orderType}</button>
           </div>
           <div className="card-wrap">
           {data.map((d, i) => {
