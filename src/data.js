@@ -6,7 +6,8 @@ export const data = [
 		"standard_year": "32 BBY",
 		"formatted_standard_year": "-32",
 		"type": "movie",
-	},  
+		"age": "resistance"
+	},
   	{
 		"name": "Attack of the Clones",
 		"bio": "I hate sand",
@@ -14,6 +15,7 @@ export const data = [
 		"standard_year": "22 BBY",
 		"formatted_standard_year": "-22",
 		"type": "movie",
+		"age": "resistance"
 	},
 	{
 		"name": "Revenge of the Sith",
@@ -22,6 +24,7 @@ export const data = [
 		"standard_year": "19 BBY",
 		"formatted_standard_year": "-19",
 		"type": "movie",
+		"age": "resistance"
 	},
 	{
 		"name": "Solo: A Star Wars Story",
@@ -30,6 +33,7 @@ export const data = [
 		"standard_year": "10 BBY",
 		"formatted_standard_year": "-10",
 		"type": "movie",
+		"age": "resistance"
 	},
 	{
 		"name": "Rogue One: A Star Wars Story",
@@ -38,6 +42,7 @@ export const data = [
 		"standard_year": "1 BBY",
 		"formatted_standard_year": "-1",
 		"type": "movie",
+		"age": "resistance"
 	},
 	{
 		"name": "A New Hope",
@@ -46,6 +51,7 @@ export const data = [
 		"standard_year": "0 BBY",
 		"formatted_standard_year": "0",
 		"type": "movie",
+		"age": "resistance"
 	},
 	{
 		"name": "Empire Strikes Back",
@@ -54,6 +60,7 @@ export const data = [
 		"standard_year": "3 ABY",
 		"formatted_standard_year": "3",
 		"type": "movie",
+		"age": "resistance"
 	},
 	{
 		"name": "Return of the Jedi",
@@ -62,6 +69,7 @@ export const data = [
 		"standard_year": "4 ABY",
 		"formatted_standard_year": "4",
 		"type": "movie",
+		"age": "resistance"
 	},
 	{
 		"name": "The Force Awakens",
@@ -70,6 +78,7 @@ export const data = [
 		"standard_year": "33 ABY",
 		"formatted_standard_year": "33",
 		"type": "movie",
+		"age": "resistance"
 	},
 	{
 		"name": "The Last Jedi",
@@ -78,6 +87,16 @@ export const data = [
 		"standard_year": "34 ABY",
 		"formatted_standard_year": "34",
 		"type": "movie",
+		"age": "resistance"
+	},
+	{
+		"name": "The Rise of Skywalker",
+		"bio": "Last of 'em",
+		"date": "2019",
+		"standard_year": "35 ABY",
+		"formatted_standard_year": "35",
+		"type": "movie",
+		"age": "resistance"
 	},
 	{
 		"name": "Tarkin",
@@ -86,6 +105,7 @@ export const data = [
 		"standard_year": "3 BBY",
 		"raw_standard_year": "-3",
 		"type": "book",
+		"age": "resistance"
 	},
 	{
 		"name": "Poe and BB8",
@@ -94,6 +114,7 @@ export const data = [
 		"standard_year": "2 BBY",
 		"raw_standard_year": "-2",
 		"type": "comic",
+		"age": "resistance"
 	},
 	{
 		"name": "Rebels",
@@ -102,7 +123,17 @@ export const data = [
 		"standard_year": "2 BBY",
 		"formatted_standard_year": "-2",
 		"type": "show",
-	}
+		"age": "resistance"
+	},
+	{
+		"name": "The Mandalorian",
+		"bio": "The One With Ahsoka",
+		"date": "2019",
+		"standard_year": "9 BBY",
+		"formatted_standard_year": "9",
+		"type": "show",
+		"age": "resistance"
+	},
 ];
 
 export const content = [ "book", "movie", "show", "comic", "game"]

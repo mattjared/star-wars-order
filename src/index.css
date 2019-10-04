@@ -2,37 +2,35 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Lato', sans-serif;
-  background-color: #282727;
+	background: linear-gradient(to top, #243B55, #141E30);
+	background-repeat:none;
+	min-height: 100vh;
+	color: #ccc;
 }
 
 .App-wrap {
-  /* max-width: 50%; */
-  margin: 0 auto;
+	margin: 0 auto;
+	max-width: 700px;
 }
 h4 {
   margin: 0;
   font-weight: 900;
 }
 .card-wrap {
-  background-color: white;
   position: relative;
   display: flex;
-  /* flex-wrap: wrap; */
-  /* flex-direction: column; */
+  flex-wrap: wrap;
+  flex-direction: column;
 }
 .card {
-  color: white;
-  background-color: orange;
+  background-color: #444;
   transition: all 1s ease-in-out;
   padding: .5rem;
   border-radius: .5rem;
-  /* margin-bottom: 2rem; */
+  margin-bottom: 2rem;
   border: 2px solid rgba(0, 0, 0, .1);
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, .2);
-  min-width: 250px;
-  /* position: absolute; */
-  /* left: 0; */
-  /* right: 0; */
+  max-width: 250px;
 }
 label {
   color: white;

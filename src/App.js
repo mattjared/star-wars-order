@@ -17,7 +17,7 @@ class App extends Component {
   }
   toggleContent = (e) => {
     if (this.state.content.includes(e)) {
-      this.setState({ 
+      this.setState({
         content: this.state.content.filter(item => item !== e),
       });
     } else {
@@ -28,56 +28,58 @@ class App extends Component {
   }
   toggleOrder = (e) => {
     this.setState({
-      yearType: !this.state.yearType,
-    });
+      orderByRelease: !this.state.orderByRelease,
+		});
   }
-  componentDidMount() {
-    // this.toggleYearData();
-  }
-  render() {    
+  render() {
     const rawData = this.state.data;
-    let orderType;
+		let orderType;
+		let sortedData;
     if (this.state.orderByRelease) {
-      const sortedData = sortBy(rawData, 'date');
-      orderType = "Order By Release Date"
+      sortedData = sortBy(rawData, 'date');
+			orderType = "Order By Star Wars Time";
+			console.log(sortedData);
     } else {
-      const sortedData = sortBy(rawData, 'date');
-      orderType = "Order By Star Wars Time"
+      sortedData = sortBy(rawData, Number('formatted_standard_year'));
+			orderType = "Order By Release Date";
+			console.log(sortedData);
     }
     return (
       <div className="App">
-          <div className="form-wrap">
-            {content.map((c, i) => {
-              return (
-                <Form 
-                  onToggle={this.toggleContent} 
-                  contentType={c} 
-                  key={i} 
-                  contentShown={this.state.content}
-                />
-              )
-            })}
-            <button onClick={this.toggleOrder}>{orderType}</button>
-          </div>
-          <div className="card-wrap">
-          {data.map((d, i) => {
-            return (
-              <Card 
-                key={i}
-                name={d.name} 
-                bio={d.bio} 
-                date={d.date} 
-                standard_year={d.standard_year}
-                type={d.type}
-                content={this.state.content}
-                expandCard={this.expandCard}
-                isExpanded={this.state.activeCard}
-                increment={i}
-              />
-            )
-          })}
-        </div>
-      </div>
+				<div className="App-wrap">
+					<div className="form-wrap">
+						{content.map((c, i) => {
+							return (
+								<Form
+									onToggle={this.toggleContent}
+									contentType={c}
+									key={i}
+									contentShown={this.state.content}
+								/>
+							)
+						})}
+						<button onClick={this.toggleOrder}>{orderType}</button>
+					</div>
+					<div className="card-wrap">
+						{sortedData.map((d, i) => {
+							return (
+								<Card
+									key={i}
+									name={d.name}
+									bio={d.bio}
+									date={d.date}
+									standard_year={d.standard_year}
+									type={d.type}
+									content={this.state.content}
+									expandCard={this.expandCard}
+									isExpanded={this.state.activeCard}
+									increment={i}
+								/>
+							)
+						})}
+				</div>
+				</div>
+			</div>
     );
   }
 }
