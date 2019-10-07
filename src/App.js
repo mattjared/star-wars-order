@@ -52,7 +52,7 @@ class App extends Component {
 						<h1>Star Wars <span>Order</span></h1>
 						<p>The order of things in the Star Wars universe</p>
 					</div>
-					<div className="form-wrap">
+					<div className="FormWrap">
 						{content.map((c, i) => {
 							return (
 								<Form
@@ -63,8 +63,8 @@ class App extends Component {
 								/>
 							)
 						})}
-						<button onClick={this.toggleOrder}>{orderType}</button>
 					</div>
+					<button onClick={this.toggleOrder}>{orderType}</button>
 					<div className="card-wrap">
 						{sortedData.map((d, i) => {
 							return (

@@ -9,12 +9,10 @@ class Form extends Component {
 	render() {
 		const isChecked = this.props.contentShown.includes(this.props.contentType)
 		return (
-			<div>
-				<label>
+			<div class="content-checkbox">
 					<input type="checkbox" onChange={this.handleToggle} checked=
-					{isChecked}/>
-					Show { this.props.contentType }s
-				</label>
+					{isChecked} id={this.props.contentType}/>
+					<label for={this.props.contentType}>Show {this.props.contentType}s</label>
 			</div>
 		)
   }
