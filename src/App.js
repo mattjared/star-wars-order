@@ -24,7 +24,8 @@ class App extends Component {
       this.setState({
         content: this.state.content.concat(e),
       })
-    }
+		}
+
   }
   toggleOrder = (e) => {
     this.setState({
@@ -47,6 +48,10 @@ class App extends Component {
     return (
       <div className="App">
 				<div className="App-wrap">
+					<div className="HeadlineWrap">
+						<h1>Star Wars <span>Order</span></h1>
+						<p>The order of things in the Star Wars universe</p>
+					</div>
 					<div className="form-wrap">
 						{content.map((c, i) => {
 							return (

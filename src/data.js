@@ -136,4 +136,4 @@ export const data = [
 	},
 ];
 
-export const content = [ "book", "movie", "show", "comic", "game"]
+export const content = [ "book", "movie", "show"]

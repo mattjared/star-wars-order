@@ -7,11 +7,10 @@ class Card extends Component {
       return (
         <div>
           <div className="card">
-              <h4>{this.props.name}</h4>
-              <span>{this.props.bio} &nbsp;</span>
-              <span>{this.props.date} &nbsp;</span>
-              <span>{this.props.standard_year} &nbsp;</span>
-              <span>{this.props.type} &nbsp;</span>
+              <h3>{this.props.name}</h3>
+              <p>Released: {this.props.date}</p>
+              <p>{this.props.standard_year}</p>
+              <p>{this.props.type} &nbsp;</p>
           </div>
         </div>
       )
