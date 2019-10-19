@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {data, content} from './data.js';
 import Card from './Card'
-import Form from './Form'
+import Toggler from './Toggler'
 import { sortBy } from 'underscore';
 
 class App extends Component {
@@ -10,41 +10,31 @@ class App extends Component {
     this.toggleContent = this.toggleContent.bind(this);
     this.toggleOrder = this.toggleOrder.bind(this);
     this.state = {
-      content: ['movie'],
+      content: ['books'],
       orderByRelease: true,
-      data: data,
+			data: data,
+			shownData: []
     };
-  }
-  toggleContent = (e) => {
-    if (this.state.content.includes(e)) {
-      this.setState({
-        content: this.state.content.filter(item => item !== e),
-      });
-    } else {
-      this.setState({
-        content: this.state.content.concat(e),
-      })
+	}
+	toggleContent = (e) => {
+		
+	}
+  toggleOrder = () => {
+		this.setState(() => ({
+			orderByRelease: !this.state.orderByRelease
+		}));
+		if (this.state.orderByRelease) {
+			this.setState({
+				shownData: sortBy(this.state.data, 'date')
+			});
+		} else {
+			this.setState({
+				shownData: sortBy(this.state.data, 'formatted_standard_year')
+			});
 		}
-
-  }
-  toggleOrder = (e) => {
-    this.setState({
-      orderByRelease: !this.state.orderByRelease,
-		});
-  }
+	}
   render() {
-    const rawData = this.state.data;
-		let orderType;
-		let sortedData;
-    if (this.state.orderByRelease) {
-      sortedData = sortBy(rawData, 'date');
-			orderType = "Order By Star Wars Time";
-			console.log(sortedData);
-    } else {
-      sortedData = sortBy(rawData, Number('formatted_standard_year'));
-			orderType = "Order By Release Date";
-			console.log(sortedData);
-    }
+		const orderType = this.state.orderByRelease ? "Order By Star Wars Time" : "Order By Release Date";
     return (
       <div className="App">
 				<div className="App-wrap">
@@ -52,11 +42,11 @@ class App extends Component {
 						<h1>Star Wars <span>Order</span></h1>
 						<p>The order of things in the Star Wars universe</p>
 					</div>
-					<div className="FormWrap">
+					<div className="TogglerWrap">
 						{content.map((c, i) => {
 							return (
-								<Form
-									onToggle={this.toggleContent}
+								<Toggler
+									onChange={this.toggleContent}
 									contentType={c}
 									key={i}
 									contentShown={this.state.content}
@@ -66,7 +56,7 @@ class App extends Component {
 					</div>
 					<button onClick={this.toggleOrder}>{orderType}</button>
 					<div className="card-wrap">
-						{sortedData.map((d, i) => {
+						{this.state.shownData.map((d, i) => {
 							return (
 								<Card
 									key={i}
@@ -74,10 +64,8 @@ class App extends Component {
 									bio={d.bio}
 									date={d.date}
 									standard_year={d.standard_year}
+									formatted_standard_year={d.formatted_standard_year}
 									type={d.type}
-									content={this.state.content}
-									expandCard={this.expandCard}
-									isExpanded={this.state.activeCard}
 									increment={i}
 								/>
 							)
