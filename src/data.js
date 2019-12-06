@@ -38,7 +38,7 @@ export const data = [
 	{
 		"name": "Rebels",
 		"bio": "The One With Ahsoka",
-		"date": 2015,
+		"date": 2021,
 		"standard_year": "2 BBY",
 		"formatted_standard_year": -2,
 		"type": "series",

@@ -9,27 +9,24 @@ class App extends Component {
     super(props);
     this.toggleContent = this.toggleContent.bind(this);
     this.toggleOrder = this.toggleOrder.bind(this);
+    this.updateData = this.updateData.bind(this);
     this.state = {
       content: ['books', 'movies', 'series'],
       orderByRelease: true,
 			data: data,
-			shownData: []
+			shownData: sortBy(data, 'date')
     };
 	}
-	componentDidMount() {
-		this.updateData();
-		this.setState({
-			shownData: sortBy(this.state.data, 'date')
-		})
-	}
 	updateData = () => {
+		const contentToLoop = this.state.content;
 		const newArray = [];
-		const contentAvail = this.state.content;
-		this.state.data.filter(function (e) {
-			if (contentAvail.includes(e.type)) {
+		console.log(contentToLoop);
+		this.state.data.filter(function(e) {
+			if (contentToLoop.includes(e.type)) {
 				newArray.push(e);
 			}
 		});
+
 		this.setState({
 			shownData: newArray
 		});
@@ -40,30 +37,29 @@ class App extends Component {
 			this.setState({
 				content: this.state.content.filter((_, i) => i !== remove)
 			},
-				() => {
-					this.updateData();
+			() => {
+					this.updateData(e);
 				}
 			);
 		} else {
 			this.setState({
 				content: [...this.state.content, e],
 			}, () => {
-				this.updateData();
+					this.updateData(e);
 			});
 		}
 	}
   toggleOrder = () => {
-		this.updateData();
 		this.setState(() => ({
 			orderByRelease: !this.state.orderByRelease
 		}));
 		if (this.state.orderByRelease) {
 			this.setState({
-				shownData: sortBy(this.state.data, 'date')
+				shownData: sortBy(this.state.shownData, 'date')
 			});
 		} else {
 			this.setState({
-				shownData: sortBy(this.state.data, 'formatted_standard_year')
+				shownData: sortBy(this.state.shownData, 'formatted_standard_year')
 			});
 		}
 	}
