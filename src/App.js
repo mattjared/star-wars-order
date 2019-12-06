@@ -10,16 +10,50 @@ class App extends Component {
     this.toggleContent = this.toggleContent.bind(this);
     this.toggleOrder = this.toggleOrder.bind(this);
     this.state = {
-      content: ['books'],
+      content: ['books', 'movies', 'series'],
       orderByRelease: true,
 			data: data,
 			shownData: []
     };
 	}
+	componentDidMount() {
+		this.updateData();
+		this.setState({
+			shownData: sortBy(this.state.data, 'date')
+		})
+	}
+	updateData = () => {
+		const newArray = [];
+		const contentAvail = this.state.content;
+		this.state.data.filter(function (e) {
+			if (contentAvail.includes(e.type)) {
+				newArray.push(e);
+			}
+		});
+		this.setState({
+			shownData: newArray
+		});
+	}
 	toggleContent = (e) => {
-		
+		if (this.state.content.indexOf(e) !== -1) {
+			let remove = this.state.content.indexOf(e);
+			this.setState({
+				content: this.state.content.filter((_, i) => i !== remove)
+			},
+				() => {
+					this.updateData();
+				}
+			);
+		} else {
+			this.setState({
+				content: [...this.state.content, e],
+			}, () => {
+				this.updateData();
+			});
+		}
 	}
   toggleOrder = () => {
+		this.updateData();
 		this.setState(() => ({
 			orderByRelease: !this.state.orderByRelease
 		}));
