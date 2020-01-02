@@ -19,10 +19,18 @@ class App extends Component {
 	}
 	updateData = () => {
 		const contentToLoop = this.state.content;
+		const dataToLoop = this.state.shownData;
 		const newArray = [];
 		console.log(contentToLoop);
 		this.state.data.filter(function(e) {
+			for (let i = 0; i <= dataToLoop.length; i++) {
+				if (contentToLoop.includes(e.type)) {
+					console.log(e);
+					newArray.push(e);
+				}
+			}
 			if (contentToLoop.includes(e.type)) {
+				console.log(e);
 				newArray.push(e);
 			}
 		});
