@@ -1,118 +1,50 @@
-import React, { Component } from 'react';
-import {data, content} from './data.js';
-import Card from './Card'
-import Toggler from './Toggler'
-import { sortBy } from 'underscore';
+import React from 'react';
+import './App.css';
+import { data } from './data.js'
+import { sortBy, where } from "underscore";
+import Card from './Card';
+import { render } from '@testing-library/react';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.toggleContent = this.toggleContent.bind(this);
-    this.toggleOrder = this.toggleOrder.bind(this);
-    this.updateData = this.updateData.bind(this);
-    this.state = {
-      content: ['books', 'movies', 'series'],
-      orderByRelease: true,
-			data: data,
-			shownData: sortBy(data, 'date')
-    };
+function App() {
+	const [releaseOrder, setOrder] = React.useState(true);
+	const [contentType, setContentType] = React.useState('all');
+	let shownData;
+	if (contentType !== 'all') {
+		shownData = where(data, { type: contentType });
+	} else {
+		shownData = data;
 	}
-	updateData = () => {
-		const contentToLoop = this.state.content;
-		const dataToLoop = this.state.shownData;
-		const newArray = [];
-		console.log(contentToLoop);
-		this.state.data.filter(function(e) {
-			for (let i = 0; i <= dataToLoop.length; i++) {
-				if (contentToLoop.includes(e.type)) {
-					console.log(e);
-					newArray.push(e);
-				}
-			}
-			if (contentToLoop.includes(e.type)) {
-				console.log(e);
-				newArray.push(e);
-			}
-		});
-
-		this.setState({
-			shownData: newArray
-		});
+	const contentOptions = ['all', 'books', 'movies', 'series'];
+	let headline;
+  if (releaseOrder) {
+		shownData = sortBy(shownData, "year");
+		headline = "Order by Star Wars time"
+  } else {
+		shownData = sortBy(shownData, "formatted_year");
+		headline = "Order by release date"
 	}
-	toggleContent = (e) => {
-		if (this.state.content.indexOf(e) !== -1) {
-			let remove = this.state.content.indexOf(e);
-			this.setState({
-				content: this.state.content.filter((_, i) => i !== remove)
-			},
-			() => {
-					this.updateData(e);
-				}
-			);
-		} else {
-			this.setState({
-				content: [...this.state.content, e],
-			}, () => {
-					this.updateData(e);
-			});
-		}
+	function Thinger() {
+		return (
+			contentOptions.map((c) => {
+				const isActive = c === contentType ? "active" : "";
+				return (
+					<li className={`content ${isActive}`} key={c} onClick={(e) => setContentType(e.target.innerText)}>{c}</li>
+				);
+			})
+		)
 	}
-  toggleOrder = () => {
-		this.setState(() => ({
-			orderByRelease: !this.state.orderByRelease
-		}));
-		if (this.state.orderByRelease) {
-			this.setState({
-				shownData: sortBy(this.state.shownData, 'date')
-			});
-		} else {
-			this.setState({
-				shownData: sortBy(this.state.shownData, 'formatted_standard_year')
-			});
-		}
-	}
-  render() {
-		const orderType = this.state.orderByRelease ? "Order By Star Wars Time" : "Order By Release Date";
-    return (
-      <div className="App">
-				<div className="App-wrap">
-					<div className="HeadlineWrap">
-						<h1>Star Wars <span>Order</span></h1>
-						<p>The order of things in the Star Wars universe</p>
-					</div>
-					<div className="TogglerWrap">
-						{content.map((c, i) => {
-							return (
-								<Toggler
-									onChange={this.toggleContent}
-									contentType={c}
-									key={i}
-									contentShown={this.state.content}
-								/>
-							)
-						})}
-					</div>
-					<button onClick={this.toggleOrder}>{orderType}</button>
-					<div className="card-wrap">
-						{this.state.shownData.map((d, i) => {
-							return (
-								<Card
-									key={i}
-									name={d.name}
-									bio={d.bio}
-									date={d.date}
-									standard_year={d.standard_year}
-									formatted_standard_year={d.formatted_standard_year}
-									type={d.type}
-									increment={i}
-								/>
-							)
-						})}
-				</div>
-				</div>
-			</div>
-    );
-  }
+  return (
+    <div className="App">
+      <header className="App-header">
+				<h2>Star Wars order</h2>
+			</header>
+			<button onClick={() => setOrder(!releaseOrder)}>{headline}</button>
+			<Thinger />
+			{shownData.map(d => (
+				<Card key={d.name} name={d.name} year={d.year} formatted_year={d.formatted_year} />
+			))}
+    </div>
+  );
 }
 
 export default App;
