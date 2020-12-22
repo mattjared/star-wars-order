@@ -12,10 +12,11 @@ export const data = [
     type: "movies"
   },
   {
-    name: "A New Hopes",
+    name: "A New Hope",
     year: 1977,
     formatted_year: 0,
-    type: "movies"
+		type: "movies",
+		poster: 'https://upload.wikimedia.org/wikipedia/en/8/87/StarWarsMoviePoster1977.jpg',
   },
   {
     name: "The Phantom Menace",
@@ -46,5 +47,11 @@ export const data = [
     year: 2013,
     formatted_year: 5,
     type: "books"
+	},
+	{
+    name: "Vader Immortal",
+    year: 2020,
+    formatted_year: 12,
+    type: "games"
   }
 ];
